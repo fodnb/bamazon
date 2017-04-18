@@ -63,7 +63,7 @@ connection.query("select * from products", function(error, results, fields) {
         console.log("");
         inquirer.prompt([{
             name: "selection",
-            message: "What would like to purchase?",
+            message: "What would you like to purchase?",
             choice: options
         }, {
             name: "amount",
@@ -95,8 +95,18 @@ connection.query("select * from products", function(error, results, fields) {
                             if (error) throw error;
                             switching();
                         });
+                        /////////////////////////adding 4/18 /////////////////////////
+                        connection.querty("select * from departments WHERE?", {
+                            department_name: results[0].department_name
+                        }, function(error, response, fields){
+                            console.log(response);
+                            var deptSales = total + response[0].total_sales;
+                            console.log(deptSales);
+                            connection.query("UPDATE departments SET total_sales = ?")
 
 
+                        })
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
                     } else {
